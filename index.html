@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="calculator.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="calculator">
+
+        <div id="calculator-screen"></div>
+
+        <div class="calculator-keys">
+
+            <button type="button" class="operator" id="+" data-operator="+">+</button>
+            <button type="button" class="operator" id="-" data-operator="-">-</button>
+            <button type="button" class="operator" id="*" data-operator="*">&times;</button>
+            <button type="button" class="operator" id="/" data-operator="/">&divide;</button>
+
+            <button type="button" class="num" id="7" data-number="7">7</button>
+            <button type="button" class="num" id="8" data-number="8">8</button>
+            <button type="button" class="num" id="9" data-number="9">9</button>
+
+
+            <button type="button" class="num" id="4" data-number="4">4</button>
+            <button type="button" class="num" id="5" data-number="5">5</button>
+            <button type="button" class="num" id="6" data-number="6">6</button>
+
+
+            <button type="button" class="num" id="1" data-number="1">1</button>
+            <button type="button" class="num" id="2" data-number="2">2</button>
+            <button type="button" class="num" id="3" data-number="3">3</button>
+
+            <button type="button" class="num" id="0" data-number="0">0</button>
+            <button type="button" class="num" id="decimal" data-number=".">.</button>
+            <button type="button" class="all-clear" id="all-clear" data-action="clear">CE</button>
+
+            <button type="button" class="equal-sign" id="equal-result" data-action="equal">=</button>
+            <div id="demo"></div>
+        </div>
+    </div>
+
+    <script>
+        function CalculatorEngine() {
+            var firstNum = "",
+                isFirst = true,
+                secondNum = "",
+                operator = "",
+                result = 0;
+
+            this.numberClicked = function(e) {
+                if (isFirst) {
+                    firstNum += e.target.dataset.number;
+                    this.displayValue(firstNum);
+                } else if (!isFirst) {
+                    secondNum += e.target.dataset.number;
+                    this.displayValue(secondNum);
+
+                }
+
+
+            };
+            this.operatorClicked = function(e) {
+                operator = e.target.dataset.operator;
+                if (isFirst == true) {
+                    isFirst = false;
+                }
+                this.displayValue(operator);
+
+            };
+
+            this.displayValue = function(data) {
+                document.getElementById("calculator-screen").innerHTML = data;
+            };
+
+            this.getResult = function() {
+                firstNum = parseFloat(firstNum);
+                secondNum = parseFloat(secondNum);
+
+                if (operator == "+") {
+                    result = firstNum + secondNum;
+                } else if (operator == "-") {
+                    result = firstNum - secondNum;
+                } else if (operator == "*") {
+                    result = firstNum * secondNum;
+                } else if (operator == "/") {
+                    result = firstNum / secondNum;
+                }
+                this.displayValue(result);
+
+            };
+
+
+            this.clear = function() {
+
+                firstNum = "";
+                secondNum = "";
+                operator = "";
+                isFirst = true;
+                document.getElementById("calculator-screen").innerHTML = "";
+
+            };
+
+
+        }
+
+        var calculator = new CalculatorEngine();
+
+        document.getElementById("0").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("1").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("2").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("3").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("4").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("5").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("6").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("7").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("8").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("9").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+        document.getElementById("decimal").addEventListener("click", function() {
+            calculator.numberClicked(event)
+        });
+
+        //operators
+        document.getElementById("+").addEventListener("click", function() {
+            calculator.operatorClicked(event)
+        });
+        document.getElementById("-").addEventListener("click", function() {
+            calculator.operatorClicked(event)
+        });
+        document.getElementById("*").addEventListener("click", function() {
+            calculator.operatorClicked(event)
+        });
+        document.getElementById("/").addEventListener("click", function() {
+            calculator.operatorClicked(event)
+        });
+
+        //clear
+        document.getElementById("all-clear").addEventListener("click", function() {
+            calculator.clear()
+        });
+
+        //equal
+        document.getElementById("equal-result").addEventListener("click", function() {
+            calculator.getResult()
+        });
+    </script>
+
+</body></html>
+// paused Bs task
+// thinking of how to concat numbers to each other without turn it to string , dividing the data (Ahad,Asharat,Mea'at)
+ 
